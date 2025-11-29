@@ -1,0 +1,29 @@
+# Archivos de compilación (LOS MÁS PESADOS)
+/build
+*/build
+*.apk
+*.ap_
+*.dex
+*.class
+
+# Gradle files
+.gradle/
+build/
+
+# Configuración local (NO SUBIR)
+local.properties
+*.iml
+
+# Carpeta de configuración del IDE
+.idea/
+misc.xml
+deploymentTargetDropDown.xml
+render.experimental.xml
+
+# Archivos del sistema operativo (Basura)
+.DS_Store
+Thumbs.db
+
+# Capturas y logs
+captures/
+*.hprof

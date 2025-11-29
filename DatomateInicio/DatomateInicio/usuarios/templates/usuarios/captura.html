@@ -1,0 +1,82 @@
+{% extends "base/plantilla.html" %}
+{% load static %}
+
+{% block page_title %}Captura de Datos{% endblock %}
+
+{% block content %}
+
+<div class="row justify-content-center">
+    <div class="col-lg-10">
+        <div class="card shadow mb-4">
+            <div class="card-body">
+
+                <form method="POST" action="{% url 'usuarios:captura' %}">
+                    {% csrf_token %}
+
+                    <h4 class="h4 text-gray-800 mb-4">Ingreso de Nuevos Registros</h4>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-4">
+                            <label for="humedad">Humedad (%)</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-tint text-success"></i></span>
+                                </div>
+                                <input type="number" step="0.01" class="form-control" id="humedad" name="humedad" placeholder="Ej: 65" required>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 mb-4">
+                            <label for="temperatura">Temperatura (°C)</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-thermometer-half text-warning"></i></span>
+                                </div>
+                                <input type="number" step="0.01" class="form-control" id="temperatura" name="temperatura" placeholder="Ej: 28" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-4">
+                            <label for="longitud_tallo">Longitud del Tallo (cm)</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-ruler-vertical"></i></span>
+                                </div>
+                                <input type="number" step="0.01" class="form-control" id="longitud_tallo" name="longitud_tallo" placeholder="Ej: 15.3" required>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 mb-4">
+                            <label for="diametro_tallo">Diámetro del Tallo (mm)</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-circle"></i></span>
+                                </div>
+                                <input type="number" step="0.01" class="form-control" id="diametro_tallo" name="diametro_tallo" placeholder="Ej: 5.8" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group mb-4">
+                        <label for="notas">Notas / Observaciones</label>
+                        <textarea class="form-control" id="notas" name="notas" rows="3" placeholder="Detalles de la condición de la planta o el lote."></textarea>
+                    </div>
+
+                    <div class="text-right">
+                        <button type="submit" class="btn btn-success btn-icon-split" style="background-color: #6AA84F; border-color: #6AA84F;">
+                            <span class="icon text-white-50">
+                                <i class="fas fa-save"></i>
+                            </span>
+                            <span class="text">Guardar Registro</span>
+                        </button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

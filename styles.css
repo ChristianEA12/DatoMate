@@ -1,0 +1,279 @@
+/* Variables CSS para los colores base de Datomate */
+:root {
+    --primary-green: #3E8E41;
+    --secondary-yellow: #E4F710;
+    --light-blue: #C5EAED; /* Opacidad 30% */
+    --text-dark: #333;
+    --text-light: #f9f9f9;
+    --background-gray: #f0f2f5; /* Fondo general de la página */
+    --border-color: #ddd;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+/* ------------------- ESTILOS GENERALES ------------------- */
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--background-gray);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    color: var(--text-dark);
+}
+
+/* Contenedor Principal (La tarjeta blanca) */
+.login-container {
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px var(--shadow-color);
+    width: 100%;
+    max-width: 500px;
+    padding: 30px;
+    box-sizing: border-box;
+}
+
+/* ------------------- ENCABEZADO Y NAVEGACIÓN ------------------- */
+
+.login-header {
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+    text-align: left;
+}
+
+.login-header .logo {
+    color: var(--primary-green);
+    font-size: 28px;
+    font-weight: 700;
+    margin: 0 0 20px 0;
+}
+
+.auth-nav {
+    display: flex;
+    gap: 25px;
+}
+
+.auth-nav .nav-item {
+    text-decoration: none;
+    color: #888;
+    font-weight: 500;
+    padding-bottom: 8px;
+    transition: color 0.3s ease;
+}
+
+.auth-nav .nav-item:hover {
+    color: var(--primary-green);
+}
+
+.auth-nav .nav-item.active {
+    color: var(--primary-green);
+    border-bottom: 3px solid var(--primary-green);
+}
+
+/* ------------------- SECCIÓN DE BIENVENIDA ------------------- */
+
+.login-content {
+    text-align: center;
+}
+
+.welcome-section {
+    margin-bottom: 30px;
+}
+
+.welcome-icon {
+    color: var(--primary-green);
+    font-size: 48px;
+    margin-bottom: 15px;
+}
+
+.welcome-section h2 {
+    font-size: 28px;
+    font-weight: 600;
+    margin: 0;
+    color: var(--text-dark);
+}
+
+.description-text {
+    color: #666;
+    margin-top: 10px;
+    margin-bottom: 25px;
+    font-size: 15px;
+}
+
+
+/* ------------------- FORMULARIOS ------------------- */
+
+/* Clase genérica para todos los formularios (Login, Registro, Olvidé) */
+.login-form,
+.register-form,
+.forgot-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.input-group {
+    text-align: left;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: var(--text-dark);
+}
+
+.input-group input[type="text"],
+.input-group input[type="email"],
+.input-group input[type="password"],
+.input-group input[type="tel"] {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 16px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.input-group input:focus {
+    border-color: var(--primary-green);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(62, 142, 65, 0.2); /* Sombra suave al enfocar */
+}
+
+/* Filas para el formulario de Registro (campos lado a lado) */
+.form-row {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+}
+
+.form-row .input-group {
+    flex: 1; /* Distribuye el espacio equitativamente */
+}
+
+.input-group.full-width {
+    width: 100%; /* Asegura que inputs individuales usen todo el ancho */
+}
+
+
+/* ------------------- OPCIONES Y BOTONES ------------------- */
+
+/* Opciones (Recuérdame y Olvidaste tu contraseña) */
+.form-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+}
+
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.checkbox-group input[type="checkbox"] {
+    accent-color: var(--primary-green);
+}
+
+.forgot-password {
+    color: var(--primary-green);
+    text-decoration: none;
+    transition: text-decoration 0.3s ease;
+}
+
+.forgot-password:hover {
+    text-decoration: underline;
+}
+
+/* Enlace de 'Ya tienes cuenta' al final del formulario */
+.login-link {
+    margin-top: 25px;
+    font-size: 15px;
+    color: #666;
+}
+
+.login-link a {
+    font-weight: 600;
+}
+
+/* Botón Principal */
+.btn-primary {
+    background-color: var(--primary-green);
+    color: var(--text-light);
+    border: none;
+    border-radius: 8px;
+    padding: 15px 25px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.btn-primary:hover {
+    background-color: #317234; /* Un verde un poco más oscuro */
+    transform: translateY(-2px);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+}
+
+
+/* ------------------- RESPONSIVIDAD ------------------- */
+
+@media (max-width: 600px) {
+    .login-container {
+        margin: 20px;
+        padding: 25px;
+    }
+
+    .login-header .logo {
+        font-size: 24px;
+    }
+
+    .auth-nav {
+        gap: 15px;
+        font-size: 14px;
+    }
+
+    .welcome-section h2 {
+        font-size: 24px;
+    }
+
+    .welcome-icon {
+        font-size: 40px;
+    }
+    
+    /* Romper filas en el formulario de Registro para apilar los campos */
+    .form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+    
+    .form-row .input-group {
+        margin-bottom: 15px; 
+    }
+
+    .form-row .input-group:last-child {
+        margin-bottom: 0;
+    }
+
+    .btn-primary {
+        font-size: 16px;
+        padding: 12px 20px;
+    }
+
+    .form-options {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+}

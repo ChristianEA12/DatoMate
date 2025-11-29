@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Datomate - Activación de Cuenta</title>
+    <!-- Si manejamos otroas carpetas adicionales, incluirlas en la url para le href del css-->
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-header">
+            <h1 class="logo">DATOMATE</h1>
+            <nav class="auth-nav">
+                <!-- Cambiar el href por las urls del proyecto -->
+                <a href="login.html" class="nav-item">Iniciar Sesión</a>
+                <a href="registro.html" class="nav-item active">Registro</a>
+                <a href="forgot_password.html" class="nav-item">Olvidé mi Contraseña</a>
+            </nav>
+        </div>
+
+        <div class="login-content">
+            <div class="welcome-section">
+                <i class="fas fa-check-circle welcome-icon"></i> <h2>Activa tu Cuenta</h2>
+                <p class="description-text">
+                    Te hemos enviado un código de activación a tu correo electrónico. 
+                    Ingrésalo a continuación para finalizar tu registro.
+                </p>
+            </div>
+            
+            <form class="activation-form">
+                <div class="input-group full-width">
+                    <label for="activation_code">Código de Activación</label>
+                    <input type="text" id="activation_code" name="activation_code" placeholder="Ingrese el código de 6 dígitos" required>
+                </div>
+                
+                <button type="submit" class="btn-primary">Activar Cuenta</button>
+            </form>
+            <!-- Debe de volver a mandar codigo -->
+            <p class="login-link">
+                ¿No recibiste el código? <a href="#" class="forgot-password">Reenviar código</a>
+            </p>
+        </div>
+    </div>
+    <script src="../javascript/active_account.js"></script>
+</body>
+</html>

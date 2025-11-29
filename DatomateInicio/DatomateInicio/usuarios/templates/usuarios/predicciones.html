@@ -1,0 +1,79 @@
+{% extends "base/plantilla.html" %}
+{% load static %}
+
+{% block page_title %}Predicciones{% endblock %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-lg-12 mb-4">
+        <div class="card shadow h-100 py-3 d-flex justify-content-center align-items-center">
+            <div class="card-body text-center">
+                <i class="fas fa-leaf fa-3x text-success mb-3" style="color:#6AA84F !important;"></i>
+                <div class="h5 mb-2 text-gray-800">Esperado:</div>
+                <div class="h1 font-weight-bold text-gray-800 mb-4">850 kg/semana</div>
+                <div class="progress" style="height: 10px;">
+                    <div class="progress-bar" role="progressbar" style="width: 85%; background-color: #6AA84F;" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Predicción vs. Real</h6>
+            </div>
+            <div class="card-body">
+                <div class="chart-area">
+                    <canvas id="predictionChart"></canvas>
+                    <div class="text-center mt-4">
+                        <span class="mr-3">
+                            <i class="fas fa-circle" style="color:#6AA84F;"></i> Predicción
+                        </span>
+                        <span class="mr-3">
+                            <i class="fas fa-circle" style="color:#38761D;"></i> Real
+                        </span>
+                    </div>
+                    <p class="text-danger small mt-3">Condiciones actuales podrían reducir rendimiento en 12% por baja humedad</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+
+{% block extra_scripts %}
+<script src="{% static 'vendor/chart.js/Chart.min.js' %}"></script>
+<script>
+    var ctx = document.getElementById("predictionChart");
+    if (ctx) {
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ["23 Nov", "24", "25", "26", "27", "28", "29", "30"],
+                datasets: [{
+                    label: "Predicción",
+                    borderColor: "#6AA84F",
+                    data: [20, 22, 23, 21, 24, 25, 24, 27], // Línea Predicción (Verde claro)
+                },
+                {
+                    label: "Real",
+                    borderColor: "#38761D",
+                    data: [18, 20, 21, 20, 22, 23, 25, 26], // Línea Real (Verde oscuro)
+                }],
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+
+                legend: { display: false },
+                scales: { yAxes: [{ ticks: { beginAtZero: false } }] }
+            }
+        });
+    }
+</script>
+{% endblock extra_scripts %}

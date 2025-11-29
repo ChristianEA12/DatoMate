@@ -1,0 +1,169 @@
+{% extends "base/plantilla.html" %}
+{% load static %}
+
+{% block page_title %}Inicio{% endblock %}
+
+{% block content %}
+
+<div class="row">
+
+    <div class="col-lg-4 mb-4">
+        <div class="card shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                            Humedad</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">
+                            <i class="fas fa-tint text-success"></i>
+                            {{ humedad }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4 mb-4">
+        <div class="card shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                            Temperatura</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">
+                            <i class="fas fa-thermometer-half text-warning"></i>
+                            {{ temperatura }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4 mb-4">
+        <div class="card shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
+                            Producción</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">
+                            <i class="fas fa-seedling text-danger"></i>
+                            {{ produccion }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+
+    <div class="col-xl-8 col-lg-7">
+        <div class="card shadow mb-4">
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h6 class="m-0 font-weight-bold text-primary">Tendencia Humedad y Temperatura</h6>
+            </div>
+            <div class="card-body">
+                <div class="chart-area" style="height: 350px;">
+                    <canvas id="myAreaChart"></canvas>
+                    <div class="text-center mt-4">
+                        <span class="mr-2">
+                            <i class="fas fa-circle" style="color:#6AA84F;"></i> Humedad
+                        </span>
+                        <span class="mr-2">
+                            <i class="fas fa-circle" style="color:#FFD966;"></i> Temperatura
+                        </span>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xl-4 col-lg-5">
+        <div class="card shadow mb-4">
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h6 class="m-0 font-weight-bold text-primary">Últimos registros</h6>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>Fecha</th>
+                                <th>Temperatura</th>
+                                <th>Humedad</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for registro in ultimos_registros %}
+                            <tr>
+                                <td>{{ registro.fecha }}</td>
+                                <td>{{ registro.temp }}</td>
+                                <td>{{ registro.hum }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+                <a href="{% url 'usuarios:captura' %}" class="btn btn-success btn-block" style="background-color: #6AA84F; border-color: #6AA84F;">
+                    Agregar Registro
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+
+{% block extra_scripts %}
+<script src="{% static 'vendor/chart.js/Chart.min.js' %}"></script>
+<script>
+    // Script de demostración, reemplazar con tu lógica de Chart.js
+    var ctx = document.getElementById("myAreaChart");
+    if (ctx) {
+        // En un proyecto real, configurarías los datos de la gráfica aquí
+        var myLineChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ["23 Nov", "24", "25", "26", "27", "28", "29", "30"],
+                datasets: [{
+                    label: "Humedad",
+                    lineTension: 0.3,
+                    backgroundColor: "rgba(106, 168, 79, 0.05)", // #6AA84F con transparencia
+                    borderColor: "#6AA84F",
+                    pointRadius: 3,
+                    pointBackgroundColor: "#6AA84F",
+                    pointBorderColor: "rgba(106, 168, 79, 1)",
+                    pointHoverRadius: 3,
+                    pointHoverBackgroundColor: "#6AA84F",
+                    pointHoverBorderColor: "rgba(106, 168, 79, 1)",
+                    pointHitRadius: 10,
+                    pointBorderWidth: 2,
+                    data: [15, 20, 25, 22, 27, 24, 28, 26], // Ejemplo de datos (Verde)
+                },
+                {
+                    label: "Temperatura",
+                    lineTension: 0.3,
+                    backgroundColor: "rgba(255, 217, 102, 0.05)", // #FFD966 con transparencia
+                    borderColor: "#FFD966",
+                    pointRadius: 3,
+                    pointBackgroundColor: "#FFD966",
+                    pointBorderColor: "rgba(255, 217, 102, 1)",
+                    pointHoverRadius: 3,
+                    pointHoverBackgroundColor: "#FFD966",
+                    pointHoverBorderColor: "rgba(255, 217, 102, 1)",
+                    pointHitRadius: 10,
+                    pointBorderWidth: 2,
+                    data: [18, 15, 20, 19, 23, 21, 25, 24], // Ejemplo de datos (Amarillo)
+                }],
+            },
+            // ... otras configuraciones de la gráfica
+        });
+    }
+</script>
+{% endblock extra_scripts %}

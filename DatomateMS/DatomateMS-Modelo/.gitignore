@@ -1,0 +1,29 @@
+# --- LO QUE NO SE DEBE SUBIR (PESADO O INNECESARIO) ---
+
+# 1. Entornos Virtuales (Esto es lo que más pesa)
+.venv/
+venv/
+env/
+ENV/
+
+# 2. Archivos compilados de Python (Se regeneran solos)
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# 3. Base de datos local (Opcional: Si quieres subir tu BD de pruebas, borra esta línea)
+db.sqlite3
+
+# 4. Archivos de configuración de PyCharm (No le sirven a nadie más)
+.idea/
+
+# 5. Archivos de sistema operativo
+.DS_Store
+Thumbs.db
+
+# --- LO QUE SÍ SE SUBIRÁ (PORQUE NO ESTÁ EN ESTA LISTA) ---
+# .env (Se subirá porque no lo pusimos aquí)
+# requirements.txt (Se subirá, ¡es vital!)
+# manage.py (Se subirá)
+# Todo tu código fuente

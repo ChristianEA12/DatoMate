@@ -1,0 +1,75 @@
+{% extends "base/plantilla.html" %}
+{% load static %}
+
+{% block page_title %}Reportes{% endblock %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card shadow mb-4">
+            <div class="card-body">
+                
+                <div class="row mb-4 align-items-center">
+                    <div class="col-md-4">
+                        <label for="rangoFecha">Rango de Fechas</label>
+                        <select class="form-control" id="rangoFecha">
+                            <option>Últimos 30 días</option>
+                            <option>Última semana</option>
+                            <option>Último año</option>
+                            <option>Rango personalizado</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label for="tipoDato">Tipo de dato</label>
+                        <select class="form-control" id="tipoDato">
+                            <option>Temperatura</option>
+                            <option>Humedad</option>
+                            <option>Producción</option>
+                            <option>Longitud del Tallo</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="chart-area">
+                    <canvas id="reportChart"></canvas>
+                    <div class="text-center mt-4">
+                        <i class="fas fa-circle" style="color:#FFD966;"></i> Temperatura
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+
+{% block extra_scripts %}
+<script src="{% static 'vendor/chart.js/Chart.min.js' %}"></script>
+<script>
+    var ctx = document.getElementById("reportChart");
+    if (ctx) {
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ["23 Nov", "27 Nov", "01 Dic", "05 Dic", "08 Dic", "14 Dic", "19 Dic", "23 Dic"],
+                datasets: [{
+                    label: "Temperatura",
+                    lineTension: 0.3,
+                    borderColor: "#FFD966",
+                    data: [20, 23, 22, 25, 24, 21, 19, 17], // Datos simulados
+                }],
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+
+                legend: { display: false },
+                scales: { yAxes: [{ ticks: { beginAtZero: false } }] }
+            }
+        });
+    }
+</script>
+{% endblock extra_scripts %}

@@ -1,0 +1,70 @@
+{% extends "base/plantilla2.html" %}
+{% load static %}
+
+{% block page_title %}Iniciar Sesión{% endblock %}
+
+{% block content %}
+
+<div class="row justify-content-center">
+    <div class="col-lg-5 col-md-8">
+        <div class="card shadow mb-4">
+            <div class="card-body p-5">
+
+                <div class="text-center mb-4">
+                    <h1 class="h3 text-gray-900 mb-2">DATOMATE</h1>
+                    <i class="fas fa-leaf text-success fa-3x mb-3"></i>
+                    <h2 class="h5 text-gray-700">Bienvenido de nuevo</h2>
+                </div>
+
+                <form method="POST" action="{% url 'usuarios:login' %}" class="user">
+                    {% csrf_token %}
+
+                    <div class="form-group mb-3">
+                        <label for="identificador" class="small text-gray-600">Correo Electrónico</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-envelope text-primary"></i></span>
+                            </div>
+                            <input type="identificador" class="form-control" id="identificador" name="identificador"
+                                   placeholder="correo@ejemplo.com" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label for="password" class="small text-gray-600">Contraseña</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-lock text-primary"></i></span>
+                            </div>
+                            <input type="password" class="form-control" id="password" name="password" 
+                                   placeholder="••••••••" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="custom-control custom-checkbox small">
+                            <input type="checkbox" class="custom-control-input" id="rememberMe" name="rememberMe">
+                            <label class="custom-control-label" for="rememberMe">Recuérdame</label>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-block btn-user">
+                        Iniciar Sesión
+                    </button>
+                </form>
+
+                <hr>
+
+                <div class="text-center">
+                    <a class="small" href="{% url 'usuarios:forgot' %}">¿Olvidaste tu contraseña?</a>
+                </div>
+                <div class="text-center">
+                    <a class="small" href="{% url 'usuarios:registro' %}">¿No tienes cuenta? ¡Regístrate aquí!</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

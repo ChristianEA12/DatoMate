@@ -1,0 +1,82 @@
+{% extends "base/plantilla.html" %}
+{% load static %}
+
+{% block page_title %}Alertas{% endblock %}
+
+{% block content %}
+
+<div class="row">
+
+    <div class="col-lg-6 mb-4">
+        <div class="card shadow h-100">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Diagnóstico de Plagas</h6>
+            </div>
+            <div class="card-body text-center">
+
+                <div class="border p-5 mb-4 border-dashed rounded" style="border-style: dashed!important;">
+                    <i class="fas fa-cloud-upload-alt fa-3x text-gray-400 mb-3"></i>
+                    <p class="text-gray-600">Arrastra o Selecciona un archivo</p>
+                    <input type="file" class="form-control-file d-none" id="fileUpload">
+                    <button type="button" class="btn btn-outline-secondary" onclick="document.getElementById('fileUpload').click()">Seleccionar Imagen</button>
+                </div>
+
+                <div class="mb-3">
+                    <img src="{% static 'img/arana_roja_ejemplo.jpg' %}" alt="Imagen de Diagnóstico" class="img-fluid rounded mb-2">
+                </div>
+
+                <h5 class="text-gray-800">Posible Plaga: Araña Roja - 92% de confianza</h5>
+
+                <button class="btn btn-success mt-3" style="background-color: #6AA84F; border-color: #6AA84F;">
+                    Guardar Diagnóstico
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6 mb-4">
+        <div class="card shadow h-100">
+            <div class="card-header py-3 d-flex justify-content-between align-items-center">
+                <h6 class="m-0 font-weight-bold text-primary">Alertas Activas</h6>
+                <button class="btn btn-secondary btn-sm">Sileciar Alertas</button>
+            </div>
+            <div class="card-body">
+
+                {% for alerta in alertas_activas %}
+                <div class="card shadow border-left-{{ alerta.color }} py-2 mb-3 {% if not alerta.leido %}bg-light{% endif %}">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col-auto mr-3">
+                                <i class="fas fa-2x text-{{ alerta.color }}">
+                                    {% if alerta.tipo == 'Temperatura alta en el lote' %}
+                                        <i class="fas fa-thermometer-full"></i>
+                                    {% else %}
+                                        <i class="fas fa-bug"></i>
+                                    {% endif %}
+                                </i>
+                            </div>
+                            <div class="col">
+                                <div class="font-weight-bold text-{{ alerta.color }} text-uppercase mb-1">
+                                    {{ alerta.tipo }}
+                                </div>
+                                <div class="text-gray-800">
+                                    {% if alerta.confianza %}{{ alerta.confianza }}{% endif %}
+                                </div>
+                                <div class="small text-gray-500">
+                                    {% if not alerta.leido %}**Nuevo** - {% endif %} Leído: {{ alerta.tiempo }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+
+                <button class="btn btn-success mt-3 float-right" style="background-color: #6AA84F; border-color: #6AA84F;">
+                    Guardar Diagnostico
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
